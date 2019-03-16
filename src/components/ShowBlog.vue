@@ -26,7 +26,7 @@ export default {
       this.$http.get('https://wd4104105310fmryxd.wilddogio.com/posts.json')
       .then(function(data){
         return data.json();
-          console.log(data)
+          // console.log(data)
         // this.blogs = data.body.slice(0,10);
         // console.log(this.blogs)
       })

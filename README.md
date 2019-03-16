@@ -1,5 +1,7 @@
 # vue-blog
 
+    This is my first vue project.
+
 > A Vue.js project
 
 ## Build Setup

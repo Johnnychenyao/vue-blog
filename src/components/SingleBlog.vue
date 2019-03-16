@@ -9,6 +9,8 @@
                 {{category}}
             </li>
         </ul>
+        <router-link class="edit-a" :to="'/edit/' + id">编辑</router-link>
+        <button @click="deleteSingleBlog()">删除</button>
     </div>
 </template>
 
@@ -26,11 +28,18 @@ export default {
             .then(function(data){
                 return data.json();
                 console.log(data)
-                // this.blog = data.body;
             })
             .then(function(data){
                 this.blog = data;
             })
+    },
+    methods:{
+        deleteSingleBlog(){
+            this.$http.delete('https://wd4104105310fmryxd.wilddogio.com/posts/' + this.id + '.json')
+                      .then( response =>{
+                          this.$router.push({path:'/'})
+                      })
+        }
     }
 }
 </script>
@@ -42,5 +51,11 @@ export default {
         padding: 20px;
         background: #eee;
         border: 1px dotted #aaa;
+    }
+    .edit-a{
+        border: 1px solid #aaa;
+        color: #333;
+        padding: 2px 5px;
+        border-radius: 0;
     }
 </style>

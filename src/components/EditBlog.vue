@@ -1,6 +1,6 @@
 <template>
   <div id="add-blog">
-    <h2>添加博客</h2>
+    <h2>编辑博客</h2>
     <form v-if="!submitted">
       <label>博客标题</label>
       <input type="text" v-model="blog.title" required>
@@ -24,7 +24,7 @@
           {{author}}
         </option>
       </select>
-      <button @click.prevent="post">添加博客</button>
+      <button @click.prevent="post">编辑博客</button>
     </form>
 
     <div v-if="submitted">
@@ -53,30 +53,34 @@ export default {
   name: 'add-blog',
   data () {
     return {
-      blog:{
-        title:"",
-        content:"",
-        categories:[],
-        author:''
-      },
+      id:this.$route.params.id,
+      blog:{},
       authors:["Hemiah","Henry","Bucky"],
       submitted:false
     }
   },
   methods:{
+    fetchData(){
+      this.$http.get("https://wd4104105310fmryxd.wilddogio.com/posts/" + this.id + ".json")
+                .then(function(data){
+                    return data.json();
+                    console.log(data)
+                    // this.blog = data.body;
+                })
+                .then(function(data){
+                    this.blog = data;
+                })
+    },
     post:function(){
-      // {
-      //   title:this.blog.title,
-      //   body:this.blog.content,
-      //   userId:1
-      // }
-      this.$http.post("https://wd4104105310fmryxd.wilddogio.com/posts.json",this.blog)
+      this.$http.put("https://wd4104105310fmryxd.wilddogio.com/posts/" + this.id + ".json",this.blog)
                 .then(function(data){
                   console.log(data)
                   this.submitted = true;
                 })
-      
     }
+  },
+  created(){
+      this.fetchData();
   }
 }
 </script>

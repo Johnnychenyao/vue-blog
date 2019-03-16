@@ -22,6 +22,7 @@ Vue.directive('theme',{
   bind:function(el,binding,vnode){
     if(binding.value == 'wide'){
       el.style.maxWidth = '960px';
+      el.style.margin = '0 auto';
     }else if(binding.value == 'narrow'){
       el.style.maxWidth = '320px'
     }
