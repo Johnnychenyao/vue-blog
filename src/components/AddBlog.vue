@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   //http://jsonplaceholder.typicode.com/
   name: 'add-blog',
@@ -70,11 +71,12 @@ export default {
       //   body:this.blog.content,
       //   userId:1
       // }
-      this.$http.post("https://wd4104105310fmryxd.wilddogio.com/posts.json",this.blog)
-                .then(function(data){
-                  console.log(data)
-                  this.submitted = true;
-                })
+      // this.$http.post("https://wd4104105310fmryxd.wilddogio.com/posts.json",this.blog)
+      axios.post("/posts.json",this.blog)
+            .then((data) =>{
+              console.log(data)
+              this.submitted = true;
+            })
       
     }
   }

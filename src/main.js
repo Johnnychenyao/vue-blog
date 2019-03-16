@@ -1,14 +1,17 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import VueResource from 'vue-resource'
+// import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'
 import App from './App'
 import Routes from './routes'
+import axios from 'axios'
 
 Vue.config.productionTip = false
 
-Vue.use(VueResource)
+//全局配置，axios 代替 vue-resource
+axios.defaults.baseURL = 'https://wd4104105310fmryxd.wilddogio.com'
+// Vue.use(VueResource)
 Vue.use(VueRouter)
 
 //自定义指令 -- 全局

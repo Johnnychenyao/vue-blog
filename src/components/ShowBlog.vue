@@ -2,7 +2,7 @@
   <div v-theme:column="'wide'" id="show-blog">
       <h1>博客总览</h1>
       <input type="text" placeholder="搜索" v-model="search">
-      <div v-for="blog in filteredBlogs" class="single-blog">
+      <div v-for="blog in filteredBlogs" class="single-blog" :key="blog.id">
           <router-link v-bind:to="'/blog/' + blog.id">
             <h2 v-rainbow>{{blog.title | to-uppercase}}</h2>
           </router-link>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'show-blog',
   data(){
@@ -23,21 +24,24 @@ export default {
       }
   },
   created(){
-      this.$http.get('https://wd4104105310fmryxd.wilddogio.com/posts.json')
+      // this.$http.get('https://wd4104105310fmryxd.wilddogio.com/posts.json')
+      axios.get('https://wd4104105310fmryxd.wilddogio.com/posts.json')
       .then(function(data){
-        return data.json();
+        return data.data
+        // return data.json();  /*由于axios返回的是json，所以不用改格式 */
+
           // console.log(data)
         // this.blogs = data.body.slice(0,10);
         // console.log(this.blogs)
       })
-      .then(function(data){
+      .then((data) =>{  /**改用ES6语法 (..) =>{}，就不会返回this  */
         var dataArray = [];
         for(let key in data){
           console.log(key)
           data[key].id = key;
           dataArray.push(data[key])
         }
-        this.blogs = dataArray;
+        this.blogs = dataArray; 
         console.log(this.blogs)
       })
   },

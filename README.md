@@ -2,6 +2,10 @@
 
     This is my first vue project.
 
+    使用：
+        野狗实时后端数据库
+        axios 代替 vue-resource
+
 > A Vue.js project
 
 ## Build Setup
