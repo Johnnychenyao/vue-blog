@@ -12,7 +12,7 @@
 
 import AddBlog from './components/AddBlog'
 import ShowBlog from './components/ShowBlog'
-import BlogHeader from './components//BlogHeader'
+import BlogHeader from './components/BlogHeader'
 
 export default {
   name: 'App',
